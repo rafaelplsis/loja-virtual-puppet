@@ -2,13 +2,13 @@ class loja_virtual::db{
     include loja_virtual
     include mysql::server
     include loja_virtual::params
-    mysql::db {$loja_virtual::params::db['user']:
+    loja_virtual::db {$loja_virtual::params::db['user']:
         schema      =>  $loja_virtual::params::db['schema'],
         password    =>  $loja_virtual::params::db['password'],
     }   
 }
 
-define mysql::db($schema, $user = $title, $password){
+define loja_virtual::db($schema, $user = $title, $password){
     Class['mysql::server'] -> Mysql::Db[$title]
     exec { "$title-schema":
         unless  =>  "mysql -uroot $schema",

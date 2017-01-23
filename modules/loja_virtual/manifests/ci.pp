@@ -59,7 +59,7 @@ $job_structure = [
   $repo_dir = '/var/lib/apt/repo'
   $repo_name = 'devopspkgs'
 
- file { $job_structure:
+  file { $job_structure:
   ensure     =>  'directory',
   owner      =>  'jenkins',
   group      =>  'jenkins',
