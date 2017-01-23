@@ -5,7 +5,7 @@ class loja_virtual::db{
     loja_virtual::db {$loja_virtual::params::db['user']:
         schema      =>  $loja_virtual::params::db['schema'],
         password    =>  $loja_virtual::params::db['password'],
-    }   
+    }
 }
 
 define loja_virtual::db($schema, $user = $title, $password){
