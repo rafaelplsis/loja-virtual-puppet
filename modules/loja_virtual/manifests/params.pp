@@ -1,6 +1,5 @@
 class loja_virtual::params {
     $keystore_file = "/etc/ssl/.keystore"
-    
     $ssl_connector = {
         "port"          =>  8443,
         "protocol"      =>  "HTTP/1.1",
@@ -13,7 +12,6 @@ class loja_virtual::params {
         "clientAuth"    =>  false,
         "sslProtocol"   =>  "SSLv3",
     }
-    
     $db = {
         "user"          =>  "loja",
         "password"      =>  "lojasecret",

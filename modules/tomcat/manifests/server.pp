@@ -9,18 +9,16 @@ class tomcat::server( $connectors = [], $data_sources = []) {
         mode    => 0644,
         source  => "puppet:///modules/tomcat/tomcat7",
         require => Package["tomcat7"],
-        notify  =>  Service["tomcat7"], 
+        notify  =>  Service["tomcat7"],
     }
-    
     file {"/var/lib/tomcat7/conf/server.xml":
         owner   =>  root,
         group   =>  tomcat7,
         mode    =>  0640,
         content =>  template("tomcat/server.xml"),
         require =>  Package["tomcat7"],
-        notify  =>  Service["tomcat7"], 
-    }   
-    
+        notify  =>  Service["tomcat7"],
+    }
     file{"/var/lib/tomcat7/conf/context.xml":
         owner       =>  root,
         group       =>  tomcat7,
@@ -28,7 +26,7 @@ class tomcat::server( $connectors = [], $data_sources = []) {
         content     =>  template("tomcat/context.xml"),
         require     =>  Package["tomcat7"],
         notify      =>  Service["tomcat7"],
-    }   
+    }
 
     service {"tomcat7":
         ensure      => running,

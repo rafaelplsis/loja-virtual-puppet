@@ -1,5 +1,4 @@
 class loja_virtual::web{
-    
     include loja_virtual
     include mysql::client
     include loja_virtual::params
@@ -27,7 +26,6 @@ class loja_virtual::web{
         key_source      =>  'http://192.168.33.16/devopspkgs.gpg',
         include_src     =>  false,
     }
-    
     package { "devopsnapratica":
         ensure  =>  "latest",
         notify  =>  Service["tomcat7"],

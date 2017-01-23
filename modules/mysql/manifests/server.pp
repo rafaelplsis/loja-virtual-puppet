@@ -22,7 +22,7 @@ class mysql::server{
     }
 
     exec { "remove-anonymous-user":
-    command     => "mysql -uroot -e \"DELETE FROM mysql.user WHERE user=''; FLUSH PRIVILEGES ", 
+    command     => "mysql -uroot -e \"DELETE FROM mysql.user WHERE user=''; FLUSH PRIVILEGES ",
     onlyif      => "mysql -u' '",
     path        => "/usr/bin",
     require     => Service["mysql"],
