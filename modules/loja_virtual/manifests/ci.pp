@@ -4,9 +4,9 @@ package { ['git', 'maven2', 'openjdk-6-jdk','rubygems']:
 }
 
 package {['fpm','bundler']:
- ensure		=>	['1.4.0','installed'],		
- provider	=>	'gem',
- require		=>	Package['rubygems'],
+ ensure     =>  ['1.4.0','installed'],      
+ provider   =>  'gem',
+ require        =>  Package['rubygems'],
 }
 
 class { 'jenkins':
@@ -39,12 +39,12 @@ $plugins = [
 
 jenkins::plugin { $plugins: }
  file {'/var/lib/jenkins/hudson.tasks.Maven.xml':
-  mode		=>	0644,
-  owner		=> 	'jenkins',
-  group		=>	'jenkins',
-  source		=>	'puppet:///modules/loja_virtual/hudson.tasks.Maven.xml',
-  require		=>	Class['jenkins::package'],
-  notify		=>	Service['jenkins'],
+  mode      =>  0644,
+  owner     =>  'jenkins',
+  group     =>  'jenkins',
+  source        =>  'puppet:///modules/loja_virtual/hudson.tasks.Maven.xml',
+  require       =>  Class['jenkins::package'],
+  notify        =>  Service['jenkins'],
 }
 
 $job_structure = [
@@ -61,22 +61,22 @@ $job_structure = [
  $repo_name = 'devopspkgs'
 
  file { $job_structure:
- ensure		=>	'directory',
- owner		=>	'jenkins',
- group		=>	'jenkins',
- require		=>	Class['jenkins::package'],
+ ensure     =>  'directory',
+ owner      =>  'jenkins',
+ group      =>  'jenkins',
+ require        =>  Class['jenkins::package'],
 }
 file { "${job_structure[1]}/config.xml":
- mode		=>	0644,
- owner		=>	'jenkins',
- group		=>	'jenkins',
- content		=>	template('loja_virtual/config.xml'),
- require		=>	File[$job_structure],
- notify		=>	Service['jenkins'],
+ mode       =>  0644,
+ owner      =>  'jenkins',
+ group      =>  'jenkins',
+ content        =>  template('loja_virtual/config.xml'),
+ require        =>  File[$job_structure],
+ notify     =>  Service['jenkins'],
 }
 
 class {'loja_virtual::repo':
- basedir =>	$repo_dir,
- name	=>	$repo_name,
+ basedir => $repo_dir,
+ name   =>  $repo_name,
 }
 }
